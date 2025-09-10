@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>🍽️ Nineties Restora — Opening Soon</title>
+  <meta name="description" content="[Your Restaurant Name] — Opening soon. Fresh flavors, cozy vibes. Stay tuned!" />
+  <meta property="og:title" content="[Your Restaurant Name] — Opening Soon" />
+  <meta property="og:description" content="Fresh flavors, cozy vibes. Stay tuned!" />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#111827" />
+  <style>
+    :root {
+      --bg: #0b0f14;         /* deep slate */
+      --card: #121822;       /* card surface */
+      --text: #e5e7eb;       /* light text */
+      --muted: #9ca3af;      /* muted text */
+      --accent: #f59e0b;     /* warm amber */
+      --accent-2: #10b981;   /* mint */
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--text);
+      background: radial-gradient(1200px 800px at 20% 10%, #121826 0%, var(--bg) 60%);
+      display: grid;
+      place-items: center;
+    }
+    .wrap {
+      width: min(900px, 92vw);
+      padding: 32px 24px 40px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0)) , var(--card);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 24px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.05);
+      text-align: center;
+    }
+    .logo {
+      display: inline-grid; place-items: center; width: 72px; height: 72px;
+      border-radius: 20px; background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #111; font-weight: 800; font-size: 28px; letter-spacing: -0.5px;
+      box-shadow: 0 10px 30px rgba(245,158,11,0.25);
+      margin: 4px auto 18px;
+    }
+    h1 { font-size: clamp(28px, 6vw, 40px); margin: 8px 0 8px; letter-spacing: -0.02em; }
+    .sub { color: var(--muted); font-size: clamp(14px, 2.6vw, 16px); margin: 0 0 22px; }
+
+    .timer { display: flex; justify-content: center; gap: 14px; margin: 24px 0 8px; flex-wrap: wrap; }
+    .tbox {
+      width: 110px; padding: 14px 10px; border-radius: 16px;
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06);
+      backdrop-filter: blur(6px);
+    }
+    .num { font-size: 34px; font-weight: 800; line-height: 1; }
+    .lbl { margin-top: 6px; color: var(--muted); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; }
+
+    .cta {
+      margin-top: 26px; display: inline-flex; align-items: center; gap: 10px; padding: 12px 18px;
+      background: linear-gradient(135deg, var(--accent), #fcd34d); color: #111827; font-weight: 700; border: none;
+      border-radius: 14px; cursor: pointer; text-decoration: none; box-shadow: 0 10px 24px rgba(245,158,11,0.35);
+    }
+    .cta:hover { filter: brightness(1.03); transform: translateY(-1px); }
+
+    .links { margin-top: 18px; font-size: 13px; color: var(--muted); }
+    .links a { color: var(--text); opacity: 0.8; text-decoration: none; }
+    .links a:hover { text-decoration: underline; }
+
+    footer { margin-top: 26px; color: var(--muted); font-size: 12px; }
+  </style>
+</head>
+<body>
+  <main class="wrap" role="main">
+    <div class="logo" aria-hidden="true">🍽️</div>
+    <h1>Nineties Restora</h1>
+    <p class="sub">We’re preparing something delicious. Opening soon — stay tuned!</p>
+
+    <!-- Optional countdown: set your launch date below -->
+    <section class="timer" aria-label="Countdown timer">
+      <div class="tbox"><div id="dd" class="num">00</div><div class="lbl">Days</div></div>
+      <div class="tbox"><div id="hh" class="num">00</div><div class="lbl">Hours</div></div>
+      <div class="tbox"><div id="mm" class="num">00</div><div class="lbl">Minutes</div></div>
+      <div class="tbox"><div id="ss" class="num">00</div><div class="lbl">Seconds</div></div>
+    </section>
+
+    <a class="cta" target="_blank" href="https://www.linkedin.com/in/plabon-asad/">Notify me</a>
+
+    <div class="links">
+      <span>Follow us:</span>
+      <a href="https://www.linkedin.com/in/plabon-asad/" aria-label="Facebook">Facebook</a> ·
+      <a href="https://www.linkedin.com/in/plabon-asad/" aria-label="Instagram">Instagram</a>
+    </div>
+
+    <footer>© <span id="year"></span> Nineties Restora. All rights reserved.</footer>
+  </main>
+
+  <script>
+    // === Countdown (edit launchDate to your target) ===
+    const launchDate = new Date('2025-09-12T10:00:00+06:00'); // Asia/Dhaka time
+    const el = {
+      dd: document.getElementById('dd'),
+      hh: document.getElementById('hh'),
+      mm: document.getElementById('mm'),
+      ss: document.getElementById('ss'),
+      year: document.getElementById('year')
+    };
+    el.year.textContent = new Date().getFullYear();
+
+    function tick() {
+      const now = new Date();
+      const diff = Math.max(0, launchDate - now);
+      const s = Math.floor(diff / 1000);
+      const d = Math.floor(s / 86400);
+      const h = Math.floor((s % 86400) / 3600);
+      const m = Math.floor((s % 3600) / 60);
+      const sec = s % 60;
+      el.dd.textContent = String(d).padStart(2,'0');
+      el.hh.textContent = String(h).padStart(2,'0');
+      el.mm.textContent = String(m).padStart(2,'0');
+      el.ss.textContent = String(sec).padStart(2,'0');
+      if (diff === 0) clearInterval(timer);
+    }
+    const timer = setInterval(tick, 1000); tick();
+  </script>
+</body>
+</html>
